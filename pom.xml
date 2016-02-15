@@ -31,14 +31,34 @@
             <scope>test</scope>
         </dependency>
         <!-- end::tests[] -->
+        
+       <!--
+       <dependency>
+            <groupId>org</groupId>
+            <artifactId>org.okapi</artifactId>
+            <scope>system</scope>
+            <version>1.0</version>
+            <systemPath>/home/okapi/javabin/Okapi.jar</systemPath>
+        </dependency>
+        -->
     </dependencies>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>1.7</java.version>
+        <!-- The main class to start by executing java -jar -->
+    	<start-class>main.Application</start-class>
     </properties>
 
     <build>
+    
+	    <resources>
+	        <resource>
+	            <directory>/home/okapi/javabin</directory>
+	        </resource>
+	    </resources>
+
         <plugins>
+
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
