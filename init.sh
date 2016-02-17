@@ -8,4 +8,4 @@ source /home/okapi/environmentSettings.bshrc
 #cd /home/okapi-web-service/ && mvn install
 
 # Run Okapi WS - avaiable at localhost:8080
-java -jar /home/okapi-web-service/output/okapi-web-service-0.1.0.jar
+java -jar /home/okapi-web-service/output/okapi-web-service-0.1.0.jar &
