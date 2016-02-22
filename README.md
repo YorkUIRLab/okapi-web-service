@@ -2,6 +2,14 @@
 
 Welcome to Okapi Information Retrieval System
 
+## Run Docker Container
+Run the following Docker machine commands:
+```bash
+sudo docker pull sadrayan/okapi-ws-docker-file
+
+sudo docker run --rm -it sadrayan/okapi-ws-docker-file
+```
+
 ## How to run
 In Docker container, run init.sh to start Okapi Web Service
 ```bash
