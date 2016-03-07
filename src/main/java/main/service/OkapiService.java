@@ -1,9 +1,11 @@
 package main.service;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.List;
 
 import org.javokapi;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import main.factory.OkapiFactory;
@@ -19,9 +21,7 @@ public class OkapiService {
 	
 	javokapi okapiInterface = null;
 	Utils okapiUtils = null;
-	
 
-		
 	public OkapiService ()  {
 		OkapiFactory okapiFactory = new OkapiFactory ();
 		okapiInterface = okapiFactory.getInstance();
@@ -29,16 +29,17 @@ public class OkapiService {
 	}
 	
 
-    public String listDatabase() {
-    	System.out.println("in list Database...");
+    public List<String> listDatabase() {
+    	//System.out.println("in list Database...");
         String dbList = okapiInterface.infoDB();
-        System.out.println("Listing Available Databases:" +dbList); //OUTPUTS THE AVAILABLE DATABASES
-        return dbList;
+        System.out.println(dbList);
+        String[] response = dbList.split("name");
+        return Arrays.asList(response);
     }
 
 
     public String setDatabase(String dbName) {
-        System.out.println("DB name: " + dbName);
+        //System.out.println("DB name: " + dbName);
         System.out.println(okapiInterface.displayStemFunctions());
         okapiInterface.chooseDB(dbName); //CHOOSE THE DATABASE UESR INPUTTED
         okapiInterface.deleteAllSets(); //CLEAR ALL EXISTING DATASETS IF ANY
