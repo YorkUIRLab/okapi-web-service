@@ -81,15 +81,28 @@ public class OkapiService {
     }
 
 
-    public String getWeigh(String term, String searchResult) {
-        String np = okapiUtils.findNP(searchResult, term);  //SEE METHOD findNP() BELOW
+    public String getWeigh(String term) {
+
+        String stemmedSearchWord=okapiInterface.stem("psstem",term); //FINDS THE ROOT OF THE WORD (i.e. 'running' becomes 'run')
+        String trimString = stemmedSearchWord.replace( "t=", "");  //Trims the t= produced from the stem() function
+        stemmedSearchWord = trimString;
+        System.out.println("Stemmed Search Word: " + stemmedSearchWord);
+        String found = null;
+        String np = null;
+        found = okapiInterface.find("1","0","DEFAULT", stemmedSearchWord); //QUERIES OKAPI WITH THE SEARCH WORD ENTERED BY USER
+        System.out.println("Results: "+ found);
+        String splitFound = null;
+
+        np = okapiUtils.findNP(found,stemmedSearchWord);  //SEE METHOD findNP() BELOW
         int npInt = Integer.parseInt(np);
 
-        String weight = okapiInterface.weight("2", np, "0", "0", "4", "5");
-        System.out.println("weight()= " + weight);  //OUTPUT THE WEIGHT FOUND BY THE weight() FUNCTION
-        System.out.println("setFind()= " + okapiInterface.setFind("0", weight, "")); //OUTPUT THE SET
+        String weight = okapiInterface.weight("2",np,"0","0","4","5");
+        System.out.println("weight()= "+ weight);  //OUTPUT THE WEIGHT FOUND BY THE weight() FUNCTION
+        System.out.println("setFind()= " + okapiInterface.setFind("0", weight,"")); //OUTPUT THE SET
         System.out.println(okapiInterface.displayStemFunctions());
         return weight;
     }
+
+
 
 }

@@ -59,9 +59,8 @@ public class OkapiController {
     }
 
     @RequestMapping(value = "/getweigh", method=RequestMethod.POST)
-    public ResponseEntity<String> getWeigh(@RequestParam(value="term") String term,
-                                           @RequestParam(value="searchResult") String searchResult) {
-        String response = okapiService.getWeigh(term, searchResult);
+    public ResponseEntity<String> getWeigh(@RequestParam(value="term") String term) {
+        String response = okapiService.getWeigh(term);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

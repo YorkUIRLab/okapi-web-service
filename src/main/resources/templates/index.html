@@ -7,7 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
     <script src="https://bootswatch.com/slate/bootstrap.min.css"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -15,7 +15,8 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -33,66 +34,70 @@
 
 <div class="container" style="padding-top: 50px">
 
-    <h1>Bootstrap starter template</h1>
+    <h1>OKAPI information retrieval system</h1>
 
-    <div class="row">
-        <div class="col-md-4">
+    <form class="form-horizontal" role="form" action="#" data-th-action="@{/okapi}" data-th-object="${model}" method="post">
 
-            <form class="form-horizontal" action="#" data-th-action="@{/okapi}" data-th-object="${model}" method="post">
-                <!-- Set Database -->
-                <div class="form-group">
-                    <label for="dbName" class="col-sm-4 control-label">Data set:</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="dbName" name="dbName" placeholder="09article" />
-                    </div>
+        <div class="col-lg-6">
+            <!-- Set Database -->
+            <div class=" form-group">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="dbName" name="dbName" placeholder="Set Database"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" name="action" value="selectDB" type="submit">Go!</button>
+                    </span>
                 </div>
+            </div>
+            <!-- Set Database -->
 
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-info" type="submit" name="action" value="selectDB">Set</button>
-                    </div>
+            <!-- Parse Terms -->
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="parseTerm" name="parseTerm" placeholder="Parse Term"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit" name="action" value="parse">Go!</button>
+                    </span>
                 </div>
-                <!-- Set Database -->
-                <!-- Parse Terms -->
-                <div class="form-group">
-                    <label for="parseTerm" class="col-sm-4 control-label">Parse Term</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="parseTerm" name="parseTerm" placeholder="Parse Term" />
-                    </div>
+            </div>
+            <!-- Parse Terms -->
+            <!--Stem Term -->
+            <div class=" form-group">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="stemTerm" name="stemTerm" placeholder="Stem Term"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit" name="action" value="stem">Go!</button>
+                    </span>
                 </div>
-
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-info" type="submit" name="action" value="parse">Parse</button>
-                    </div>
+            </div>
+            <!--Stem Term -->
+            <!-- searchTerm Terms -->
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="searchTerm" name="searchTerm"
+                           placeholder="Search Term"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit" name="action" value="search">Search</button>
+                        <button class="btn btn-default" type="submit" name="action" value="weight">Get Weigh</button>
+                    </span>
                 </div>
-                <!-- Parse Terms -->
-                <!-- Stem Terms -->
-                <div class="form-group">
-                    <label for="stemTerm" class="col-sm-4 control-label">Stem Term</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="stemTerm" name="stemTerm" placeholder="Stem Term" />
-                    </div>
+            </div>
+            <!-- searchTerm Terms -->
+            <!-- Display Results-->
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button class="btn btn-info" type="submit" name="action" value="displayResult">Display Results
+                    </button>
                 </div>
-
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-info" type="submit" name="action" value="stem">Stem</button>
-                    </div>
-                </div>
-                <!-- Parse Terms -->
-
-            </form>
+            </div>
 
         </div>
-
-        <div class="col-md-8" >
+        <div class="col-lg-6">
             <blockquote>
                 <div id="o" th:utext="${result}"></div>
             </blockquote>
         </div>
-    </div>
 
+    </form>
 
 </div><!-- /.container -->
 

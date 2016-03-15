@@ -67,8 +67,22 @@ public class IndexController {
                 System.out.println("stem result " + result);
                 model.addAttribute("result", result);
                 break;
-            case "" :
-                System.out.println("Excellent!");
+            case "search" :
+                String searchTerm = request.getParameter("searchTerm");
+                result = okapiService.stemTerm(searchTerm);
+                System.out.println("stem result " + result);
+                model.addAttribute("result", result);
+                break;
+            case "weigh" :
+                String searchTerms = request.getParameter("searchTerm");
+                result = okapiService.getWeigh(searchTerms);
+                System.out.println("weight: " + result);
+                model.addAttribute("result", result);
+                break;
+            case "displayResult" :
+                result = okapiService.displayResultSet();
+                System.out.println("result-set " + result);
+                model.addAttribute("result", result);
                 break;
 
             default :
