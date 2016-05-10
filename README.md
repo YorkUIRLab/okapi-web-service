@@ -2,6 +2,12 @@
 
 Welcome to Okapi Information Retrieval System
 
+## Okapi on AWS
+Okapi web interface is available on AWS
+```
+http://ec2-54-191-146-173.us-west-2.compute.amazonaws.com:8080/
+```
+
 ## Run Docker Container
 Run the following Docker machine commands:
 ```bash
