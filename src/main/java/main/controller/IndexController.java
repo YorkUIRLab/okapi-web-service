@@ -73,7 +73,7 @@ public class IndexController {
                 System.out.println("stem result " + result);
                 model.addAttribute("result", result);
                 break;
-            case "weigh" :
+            case "weight" :
                 String searchTerms = request.getParameter("searchTerm");
                 result = okapiService.getWeigh(searchTerms);
                 System.out.println("weight: " + result);
