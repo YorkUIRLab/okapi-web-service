@@ -68,12 +68,35 @@ public class OkapiService {
     }
 
 
-    public String displayResultSet() {
+    public String displayResultSet(String searchWord) {
         System.out.println("Your query returned the following results");
         String results = "";
 
-        for (int i = 0; i < 99; i++) {
-            results = okapiInterface.showSetRecord("1", "1", Integer.toString(i), "0") + ", ";
+        String stemmedSearchWord=okapiInterface.stem("psstem",searchWord); //FINDS THE ROOT OF THE WORD (i.e. 'running' becomes 'run')
+        String trimString = stemmedSearchWord.replace( "t=", "");  //Trims the t= produced from the stem() function
+        stemmedSearchWord = trimString;
+        System.out.println("Stemmed Search Word: " + stemmedSearchWord);
+        String found = null;
+        String np = null;
+        found = okapiInterface.find("1","0","DEFAULT", stemmedSearchWord); //QUERIES OKAPI WITH THE SEARCH WORD ENTERED BY USER
+        System.out.println("Results: "+ found);
+        String splitFound = null;
+
+        np = okapiUtils.findNP(found,stemmedSearchWord);  //SEE METHOD findNP() BELOW
+        int npInt = Integer.parseInt(np);
+
+        String weight = okapiInterface.weight("2",np,"0","0","4","5");
+        System.out.println("weight()= "+ weight);  //OUTPUT THE WEIGHT FOUND BY THE weight() FUNCTION
+        System.out.println("setFind()= " + okapiInterface.setFind("0", weight,"")); //OUTPUT THE SET
+        System.out.println(okapiInterface.displayStemFunctions());
+
+        //DISPLAYS ALL THE RECORDS FOUND
+        System.out.println("\n\nYour query returned the following results");
+        //for (int i=0; i<npInt; i++){
+        for (int i=0; i<99; i++) {
+            //System.out.println("Record #" + i + ": "+okapiInterface.showSetRecord("100", "1", Integer.toString(i),"0"));
+            System.out.println("Record #" + i + ": "+okapiInterface.showSetRecord("1", "1", Integer.toString(i),"0"));
+            results += "Record #" + i + ": " +okapiInterface.showSetRecord("1", "1", Integer.toString(i),"0") + "\n";
         }
 
         System.out.println("Record #" + results);
@@ -83,6 +106,7 @@ public class OkapiService {
 
     public String getWeigh(String term) {
 
+        String results = "";
         String stemmedSearchWord=okapiInterface.stem("psstem",term); //FINDS THE ROOT OF THE WORD (i.e. 'running' becomes 'run')
         String trimString = stemmedSearchWord.replace( "t=", "");  //Trims the t= produced from the stem() function
         stemmedSearchWord = trimString;

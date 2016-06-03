@@ -83,7 +83,8 @@ public class IndexController {
                 model.addAttribute("result", result);
                 break;
             case "displayResult" :
-                result = okapiService.displayResultSet();
+                searchTerms = request.getParameter("searchTerm");
+                result = okapiService.displayResultSet(searchTerms);
                 System.out.println("result-set " + result);
                 result = "Results: " + result;
                 model.addAttribute("result", result);

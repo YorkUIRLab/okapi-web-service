@@ -65,8 +65,8 @@ public class OkapiController {
     }
 
     @RequestMapping(value = "/result", method= RequestMethod.GET)
-    public ResponseEntity<String> displayResultSet() {
-        String response = okapiService.displayResultSet();
+    public ResponseEntity<String> displayResultSet(@RequestParam(value="term") String term) {
+        String response = okapiService.displayResultSet(term);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
     

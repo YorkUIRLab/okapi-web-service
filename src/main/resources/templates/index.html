@@ -85,16 +85,13 @@
             <!-- Display Results-->
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button class="btn btn-info" type="submit" name="action" value="displayResult">Display Results
-                    </button>
+                    <button class="btn btn-info" type="submit" name="action" value="displayResult">Display Results</button>
                 </div>
             </div>
 
         </div>
         <div class="col-lg-6">
-            <blockquote>
-                <div id="o" th:utext="${result}"></div>
-            </blockquote>
+             <pre id="o" th:utext="${result}"></pre>
         </div>
 
     </form>
